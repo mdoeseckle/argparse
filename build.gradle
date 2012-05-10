@@ -1,0 +1,13 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+
+}
+

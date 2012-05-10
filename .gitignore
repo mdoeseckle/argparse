@@ -1,0 +1,8 @@
+# ignore eclipse related
+.project
+.classpath
+.settings/
+bin/
+
+# ignore gradle related
+.gradle/
