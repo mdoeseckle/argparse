@@ -2,6 +2,7 @@ package me.willynilly.argparse;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import me.willynilly.argparse.utils.Identity;
 import me.willynilly.argparse.utils.Joiner;
@@ -21,7 +22,7 @@ public final class HelpFlag implements Flag {
 	}
 
 	@Override
-	public int invoke(String[] arguments, int head) {
+	public int invoke(String[] arguments, int head, Map<String, Object> results) {
 		printUsage();
 		
 		if(description != null && !description.isEmpty()) {

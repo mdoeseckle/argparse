@@ -9,14 +9,14 @@ import java.util.Set;
  * Basically, an immutable map
  *
  */
-public class Namespace implements Map<String, String> {
-	private final Map<String, String> contents;
+public class Namespace implements Map<String, Object> {
+	private final Map<String, Object> contents;
 	
 	Namespace() {
-		this.contents = new HashMap<String, String>();
+		this.contents = new HashMap<String, Object>();
 	}
 	
-	Namespace(Map<String, String> contents) {
+	Namespace(Map<String, Object> contents) {
 		this.contents = contents;
 	}
 
@@ -36,12 +36,12 @@ public class Namespace implements Map<String, String> {
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<String, String>> entrySet() {
+	public Set<java.util.Map.Entry<String, Object>> entrySet() {
 		return contents.entrySet();
 	}
 
 	@Override
-	public String get(Object key) {
+	public Object get(Object key) {
 		return contents.get(key);
 	}
 
@@ -56,12 +56,12 @@ public class Namespace implements Map<String, String> {
 	}
 
 	@Override
-	public String put(String key, String value) {
+	public String put(String key, Object value) {
 		throw new UnsupportedOperationException("this object is immutable");
 	}
 
 	@Override
-	public void putAll(Map<? extends String, ? extends String> m) {
+	public void putAll(Map<? extends String, ? extends Object> m) {
 		throw new UnsupportedOperationException("this object is immutable");
 	}
 
@@ -76,7 +76,7 @@ public class Namespace implements Map<String, String> {
 	}
 
 	@Override
-	public Collection<String> values() {
+	public Collection<Object> values() {
 		return contents.values();
 	}
 

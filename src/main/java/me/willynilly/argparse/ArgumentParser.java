@@ -18,38 +18,56 @@ public class ArgumentParser {
 			throw new NullPointerException();
 		}
 		
+		Map<String, Object> results = new HashMap<String, Object>();
+		
 		for(int head = 0; head < arguments.length; head++) {
-			String argument = arguments[head];
+			String argument = arguments[head].replaceFirst("-+", "");
 			Flag flag = flags.get(argument);
 			
 			if(flag == null) {
 				throw new IllegalArgumentException("unknown flag: " + argument);
 			}
 			
-			int indexesConsumed = flag.invoke(arguments, head);
+			int indexesConsumed = flag.invoke(arguments, head, results);
 			head += indexesConsumed;
 		}
 		
-		return new Namespace();
+		return new Namespace(results);
 	}
 
 	public void addArgument(String flags, Parameter... parameters) {
 		if(parameters == null) throw new IllegalArgumentException("parameters cannot be a null object");
 		
-		String[] individualFlags = flags.split(",");
-		if(individualFlags.length == 0) throw new IllegalArgumentException("invalid format: flags must be a comma delimited list");
+		String[] finalizedFlags = ArgumentHelper.parseFlags(flags);
+		
+		if(finalizedFlags.length == 0) throw new IllegalArgumentException("invalid format: flags must be a comma delimited list");
+		
+		int nargs = 0;
+		String dest = ArgumentHelper.getDest(finalizedFlags);
 		
 		for(Parameter parameter : parameters) {
 			switch(parameter.getType()) {
 				case HELP:
-					String usageFlag = String.format("[%s]", individualFlags[0]);
-					helpFlag.addHelp(usageFlag, flags, (String) parameter.getValue());
+					helpFlag.addHelp(String.format("[%s]", finalizedFlags[0]), flags, (String) parameter.getValue());
 					break;
 				case NARGS:
+					nargs = (Integer) parameter.getValue();
 					break;
 				default:
 					throw new IllegalArgumentException("invalid parameter type: " + parameter.getType());
 			}
+		}
+		
+		switch(nargs) {
+			case 0:
+				for(String key : finalizedFlags) {
+					this.flags.put(key, new BooleanFlag(dest));
+				}
+				break;
+			case 1:
+				break;
+			default:
+				throw new UnsupportedOperationException("currently only 0 or 1 arguments can be applied to a flag");
 		}
 		
 	}
