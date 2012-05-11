@@ -1,6 +1,6 @@
 package me.willynilly.argparse;
 
-public class ArgumentHelper {
+class ArgumentHelper {
 	
 	public static String[] parseFlags(String input) {
 		String[] flags = input.split(",");

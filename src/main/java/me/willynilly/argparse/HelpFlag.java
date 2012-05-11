@@ -8,7 +8,7 @@ import me.willynilly.argparse.utils.Identity;
 import me.willynilly.argparse.utils.Joiner;
 import me.willynilly.argparse.utils.Triplet;
 
-public final class HelpFlag implements Flag {
+final class HelpFlag implements Flag {
 	private final boolean isJar;
 	private final String description;
 	

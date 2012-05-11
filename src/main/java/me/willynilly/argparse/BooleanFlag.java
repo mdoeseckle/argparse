@@ -2,7 +2,7 @@ package me.willynilly.argparse;
 
 import java.util.Map;
 
-public class BooleanFlag implements Flag {
+final class BooleanFlag implements Flag {
 	private final String name;
 	
 	public BooleanFlag(String name) {
