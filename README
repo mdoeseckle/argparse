@@ -1,0 +1,8 @@
+overview:
+  This is a Java command line argument parser modeled after Python's argparse module.  It currently only 
+  contains a subset of the functionality available in python, so please feel free to expand it.
+
+build steps:
+  1. run gradle install
+  2. find the .jar in build/libs 
+
