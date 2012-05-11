@@ -3,10 +3,6 @@ package me.willynilly.argparse;
 import java.util.HashMap;
 import java.util.Map;
 
-// -h for usage
-// -h, --help for argument help
-// description for argument help
-
 public class ArgumentParser {
 	private final Map<String, Flag> flags = new HashMap<String, Flag>();
 	private final HelpFlag helpFlag;
@@ -38,8 +34,24 @@ public class ArgumentParser {
 	}
 
 	public void addArgument(String flags, Parameter... parameters) {
+		if(parameters == null) throw new IllegalArgumentException("parameters cannot be a null object");
+		
+		String[] individualFlags = flags.split(",");
+		if(individualFlags.length == 0) throw new IllegalArgumentException("invalid format: flags must be a comma delimited list");
+		
+		for(Parameter parameter : parameters) {
+			switch(parameter.getType()) {
+				case HELP:
+					String usageFlag = String.format("[%s]", individualFlags[0]);
+					helpFlag.addHelp(usageFlag, flags, (String) parameter.getValue());
+					break;
+				case NARGS:
+					break;
+				default:
+					throw new IllegalArgumentException("invalid parameter type: " + parameter.getType());
+			}
+		}
 		
 	}
-	
 	
 }
