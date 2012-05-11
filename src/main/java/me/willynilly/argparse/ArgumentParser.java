@@ -3,11 +3,16 @@ package me.willynilly.argparse;
 import java.util.HashMap;
 import java.util.Map;
 
+// -h for usage
+// -h, --help for argument help
+// description for argument help
+
 public class ArgumentParser {
 	private final Map<String, Flag> flags = new HashMap<String, Flag>();
+	private final HelpFlag helpFlag;
 	
 	public ArgumentParser() {
-		HelpFlag helpFlag = new HelpFlag(true, "");
+		this.helpFlag = new HelpFlag(true, "");
 		flags.put("--help", helpFlag);
 		flags.put("-h", helpFlag);
 	}
@@ -30,6 +35,10 @@ public class ArgumentParser {
 		}
 		
 		return new Namespace();
+	}
+
+	public void addArgument(String flags, Parameter... parameters) {
+		
 	}
 	
 	
