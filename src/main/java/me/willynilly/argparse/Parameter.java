@@ -4,7 +4,12 @@ public class Parameter {
 	
 	public enum Type {
 		NARGS,
-		HELP
+		HELP,
+		DEST
+	}
+	
+	public static Parameter create(Type type, Object value) {
+		return new Parameter(type, value);
 	}
 	
 	private final Type type;

@@ -53,6 +53,9 @@ public class ArgumentParser {
 				case NARGS:
 					nargs = (Integer) parameter.getValue();
 					break;
+				case DEST:
+					dest = (String) parameter.getValue();
+					break;
 				default:
 					throw new IllegalArgumentException("invalid parameter type: " + parameter.getType());
 			}
