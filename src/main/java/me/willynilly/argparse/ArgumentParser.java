@@ -9,8 +9,8 @@ public class ArgumentParser {
 	
 	public ArgumentParser() {
 		this.helpFlag = new HelpFlag(true, "");
-		flags.put("--help", helpFlag);
-		flags.put("-h", helpFlag);
+		flags.put("help", helpFlag);
+		flags.put("h", helpFlag);
 	}
 
 	public Namespace parseArgs(String[] arguments) {
