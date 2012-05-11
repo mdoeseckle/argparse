@@ -4,3 +4,11 @@ build steps:
   1. run gradle install
   2. find the .jar in build/libs 
 
+  Note: Run this if you do not have gradle installed:
+    ./gradlew install (Linux) 
+
+    -or-
+
+    ./gradlew.bat install (Windows)
+
+    This will install gradle prior to running the build.
