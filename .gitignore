@@ -6,3 +6,4 @@ bin/
 
 # ignore gradle related
 .gradle/
+build/
