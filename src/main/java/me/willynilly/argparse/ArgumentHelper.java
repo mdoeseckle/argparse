@@ -36,5 +36,9 @@ class ArgumentHelper {
 		
 		return dest;
 	}
+	
+	public static String getUsage(String flag) {
+		return String.format("[%s%s]", flag.length() == 1 ? "-" : "--", flag);
+	}
 
 }

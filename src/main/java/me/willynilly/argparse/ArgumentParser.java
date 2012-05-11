@@ -48,7 +48,7 @@ public class ArgumentParser {
 		for(Parameter parameter : parameters) {
 			switch(parameter.getType()) {
 				case HELP:
-					helpFlag.addHelp(String.format("[%s]", finalizedFlags[0]), flags, (String) parameter.getValue());
+					helpFlag.addHelp(ArgumentHelper.getUsage(finalizedFlags[0]), flags, (String) parameter.getValue());
 					break;
 				case NARGS:
 					nargs = (Integer) parameter.getValue();
