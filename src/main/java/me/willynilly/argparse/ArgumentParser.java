@@ -68,11 +68,13 @@ public class ArgumentParser {
 				}
 				break;
 			case 1:
+				for(String key : finalizedFlags) {
+					this.flags.put(key, new StringFlag(dest));
+				}
 				break;
 			default:
 				throw new UnsupportedOperationException("currently only 0 or 1 arguments can be applied to a flag");
 		}
-		
 	}
 	
 }
