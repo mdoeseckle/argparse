@@ -42,13 +42,14 @@ public class ArgumentParser {
 		
 		if(finalizedFlags.length == 0) throw new IllegalArgumentException("invalid format: flags must be a comma delimited list");
 		
+		String helpDescription = null;
 		int nargs = 0;
 		String dest = ArgumentHelper.getDest(finalizedFlags);
 		
 		for(Parameter parameter : parameters) {
 			switch(parameter.getType()) {
 				case HELP:
-					helpFlag.addHelp(ArgumentHelper.getUsage(finalizedFlags[0]), flags, (String) parameter.getValue());
+					helpDescription = (String) parameter.getValue();
 					break;
 				case NARGS:
 					nargs = (Integer) parameter.getValue();
@@ -59,6 +60,14 @@ public class ArgumentParser {
 				default:
 					throw new IllegalArgumentException("invalid parameter type: " + parameter.getType());
 			}
+		}
+		
+		if(helpDescription != null) {
+			String usage = nargs == 0
+				? ArgumentHelper.getUsage(finalizedFlags[0])
+				: ArgumentHelper.getUsage(finalizedFlags[0], dest.toUpperCase());
+				
+			helpFlag.addHelp(usage, flags, helpDescription);
 		}
 		
 		switch(nargs) {
